@@ -14,57 +14,86 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+# JSS:
+======
++ JSS is an authoring tool for CSS which allows you to use JavaScript to describe styles in a declarative, conflict-free and reusable way. It can compile in the browser, server-side or at build time in Node
++ When we working Material UI for React Applications we will use JSS syntax to define css rules dynamically
++ JSS plugins are loaded when we create a react application. We can see those modules in nodemodules folder
++ To apply styles we can use `withStyles` or `makeStyles` conversions those are imported from `@material-ui/styles`
++ Lets see examples how to write normal css code in jss(object) format for component `SideMenu`
+    +  `import { makeStyles } from '@material-ui/styles';`
+        `import React from 'react'`
+       
+       <!-- JSS CSS -->
+        const  useStyles=makeStyles(   `makeStyles return a function that is stored in useStyles`
+                         <!-- object opened -->
+                            {
+                sideMenu:{ 
+                            display: 'flex',
+                            flexDirection:'column',
+                            position: 'absolute',
+                            height: '100%',
+                            left: '0px',
+                            width: '150px',
+                            backgroundColor: '#253053'
+                            }
+                    }
+                    <!-- object closed -->
+                    )
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+                       <!-- Normal css -->
+                             .side-menu{
+                                 display: flex;
+                                 flex-direction: column;
+                                 position: absolute;
+                                 height: 100%;
+                                 left: 0px;
+                                 width: 150px;
+                                 background-color: #253053;
+                               } 
 
-### `npm run build`
+                            export default function SideMenu() {
+                                const classes=useStyles();
+                                return (
+                                    <!-- normal css class -->
+                                     <div className="side-menu">
+                                    <div className={classes.sideMenu}>
+                                    </div>
+                                )
+                            }
+                            
+# Material UI:
+==============
++ To develop React Applications easy and faster we can use Material UI
++ Material UI is availabla as npm package `@materil-ui/core`
++ References Links
+    + https://material-ui.com/
+    + https://material.io/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
++ To work with material ui we have to install `@material-ui/core` by using `npm i --save @material-ui/core` . We can check dependicies added in package.json
++ Try to import @material-ui/core for import Button component
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Customize the theme and components:
+=====================================
 
-### `npm run eject`
++ Now we can customize the AppBar(header) component
+    + For the AppBar component default we are getting blue background color. Now we will change as white background color 
+    + For this we will use the `makeStyles` conversion
+    + Header.js
+        ```import {makeStyles} from '@material-ui/core';
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+        const useStyles=makeStyles({
+            root:{
+                backgroundColor: '#fff'
+            }
+        }) 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        export default function Header() {
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+                const classes=useStyles();
+                return (
+                <AppBar position="static" className={classes.root}>
+                
+                </AppBar>)
+        }```
