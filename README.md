@@ -21,8 +21,10 @@ You will also see any lint errors in the console.
 + JSS plugins are loaded when we create a react application. We can see those modules in nodemodules folder
 + To apply styles we can use `withStyles` or `makeStyles` conversions those are imported from `@material-ui/styles`
 + Lets see examples how to write normal css code in jss(object) format for component `SideMenu`
-    +  `import { makeStyles } from '@material-ui/styles';`
-        `import React from 'react'`
+    +  
+    ```
+    import { makeStyles } from '@material-ui/styles';
+    import React from 'react'
        
        <!-- JSS CSS -->
         const  useStyles=makeStyles(   `makeStyles return a function that is stored in useStyles`
@@ -61,6 +63,7 @@ You will also see any lint errors in the console.
                                     </div>
                                 )
                             }
+                            ```
                             
 # Material UI:
 ==============
@@ -81,7 +84,8 @@ You will also see any lint errors in the console.
     + For the AppBar component default we are getting blue background color. Now we will change as white background color 
     + For this we will use the `makeStyles` conversion
     + Header.js
-        ```import {makeStyles} from '@material-ui/core';
+        ```
+        import {makeStyles} from '@material-ui/core';
 
         const useStyles=makeStyles({
             root:{
@@ -94,6 +98,6 @@ You will also see any lint errors in the console.
                 const classes=useStyles();
                 return (
                 <AppBar position="static" className={classes.root}>
-                
+
                 </AppBar>)
         }```
