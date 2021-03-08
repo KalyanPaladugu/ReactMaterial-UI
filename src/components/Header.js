@@ -4,10 +4,22 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import {makeStyles} from '@material-ui/core';
-
+import SearchIcon from '@material-ui/icons/Search';
 const useStyles=makeStyles({
     root:{
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        
+    },
+    searchInput:{
+        opacity:"0.6",
+        padding:"0px 8px",
+        fontSize:'0.8rem',
+        '&:hover':{
+            backgroundColor:"#f2f2f2"
+        },
+        '& .MuiSvgIcon-root':{
+            marginRight:'8px'
+        }
     }
 })
 
@@ -17,9 +29,13 @@ export default function Header() {
     return (
       <AppBar position="static" className={classes.root}>
           <Toolbar>
-            <Grid container>
+            <Grid container alignItems="center">
                 <Grid item >
-                <InputBase/>
+                <InputBase 
+                  placeholder="Search topic"
+                  className={classes.searchInput}
+                  startAdornment={<SearchIcon fontSize="small"/>}
+                />
                </Grid>
                <Grid item sm>
                
@@ -27,17 +43,17 @@ export default function Header() {
                 <Grid item >
                   <IconButton>
                       <Badge badgeContent={4} color="secondary">
-                         <NotificationsNoneIcon/>
+                         <NotificationsNoneIcon fontSize="small"/>
                       </Badge>
                   </IconButton>
                   <IconButton>
-                      <Badge badgeContent={4} color="secondary">
-                         <ChatBubbleOutlineIcon/>
+                      <Badge badgeContent={4} color="primary">
+                         <ChatBubbleOutlineIcon fontSize="small"/>
                       </Badge>
                   </IconButton>
                   <IconButton>
-                      <Badge badgeContent={4} color="secondary">
-                         <PowerSettingsNewIcon/>
+                      <Badge badgeContent={0} color="secondary">
+                         <PowerSettingsNewIcon fontSize="small"/>
                       </Badge>
                       </IconButton>
 

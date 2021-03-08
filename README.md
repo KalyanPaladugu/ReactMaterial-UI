@@ -100,4 +100,45 @@ You will also see any lint errors in the console.
                 <AppBar position="static" className={classes.root}>
 
                 </AppBar>)
-        }```
+        }
+        ```
+
++ spacing() function we can use for theme of application by passing values with in that like `spacing(1)` 1 - means 8px
++ We can change the theme of the application by ThemeProvider. We can change primary and secondary colors whcih are in palette object by applying new color codes
+
+App.js
+```
+import {createMuiTheme, CssBaseline} from '@material-ui/core';
+
+const theme=createMuiTheme({
+  palette:{
+    primary:{
+     main:"#FF0000",
+     dark:"#303f9f"
+    },
+    secondary:{
+      main:"#f50057",
+      light:"#c51162"
+    }
+  }
+})
+
+
+export default function App() {
+   const classes=useStyles();
+  return (
+     <ThemeProvider theme={theme}>
+     <SideMenu/>
+     <div className={classes.appMain}>
+    <Header/>
+    <CssBaseline/>
+     </div>
+    </ThemeProvider>
+  );
+}
+
+```
+
++ To reuse components we can create all sub components in separate folder and include all components in one main component in same folder(Here we use destructuring of elements and props)
+
++ In this project we create components folder with in this we created Controls as main component for the form fileds we have to include every filed component in Controls component
