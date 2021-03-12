@@ -142,3 +142,19 @@ export default function App() {
 + To reuse components we can create all sub components in separate folder and include all components in one main component in same folder(Here we use destructuring of elements and props)
 
 + In this project we create components folder with in this we created Controls as main component for the form fileds we have to include every filed component in Controls component
+
+
+## Form Validation & Submission
+===============================
+
++ We have to write validation for the each field in the form with update data.For that we written validations in validate function
++ The data with value is sent from the useForm component by validate function to the EmployeeForm component
+
+
+## Store the data in browser by using localStorage object
+=========================================================
++ Here we can store the form data in localstorage of browser by using `setItem()` and `getItem()`
+
+## MUI Data Table
+=================
+

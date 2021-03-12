@@ -11,13 +11,10 @@ import Employees from '../pages/Employees/Employees';
 const theme=createMuiTheme({
   palette:{
     primary:{
-     main:"#2ECCFA",
+     main:"#1E8C8D",
      
     },
-    secondary:{
-      main:"#E6E6E6",
-     
-    },
+   
     root:{
       backgroundColor:"E6E6E6"
     }
