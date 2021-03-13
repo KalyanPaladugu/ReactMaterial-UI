@@ -158,3 +158,6 @@ export default function App() {
 ## MUI Data Table
 =================
 
+## MUI popup dialog
+===================
++ Adding data with popup

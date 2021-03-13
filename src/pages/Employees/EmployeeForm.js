@@ -1,6 +1,6 @@
 import {  Grid,MenuItem,FormControl,InputLabel,Select as MuiSelect } from '@material-ui/core';
 import Controls from '../../components/controls/Controls'
-
+import {useState,useEffect} from 'react';
 import React from 'react'
 
 import {useForm,Form} from '../../components/useForm';
@@ -27,8 +27,11 @@ const initialFValues={
 
 
 }
-export default function EmployeeForm() {
 
+
+
+export default function EmployeeForm(props) {
+  const {addOrEdit,recordForEdit}=props
     const validate=(fieldValues=values)=>{
         const temp={...errors}
         if('fullName' in fieldValues)
@@ -52,10 +55,19 @@ const {values,setValues,errors,setErrors,handleInputChange,resetForm}=useForm(in
         e.preventDefault()
         if(validate()){
                
-                employeeService.insertEmployee(values)
-                resetForm()
+                // employeeService.insertEmployee(values)
+                // resetForm()
+                addOrEdit(values,resetForm);
         }
     } 
+
+
+    useEffect(()=>{
+        if(recordForEdit != null)
+            setValues({
+                ...recordForEdit
+            })
+    },[recordForEdit])
     return (
         
             <Form onSubmit={handleSubmit}>          
