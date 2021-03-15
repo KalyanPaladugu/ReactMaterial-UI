@@ -12,7 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Popup from '../../components/Popup';
-
+import  Notification from '../../components/Notification';
 
 
 const useStyles=makeStyles(theme=>({
@@ -46,6 +46,7 @@ export default function Employees() {
      const [filterFn,setFilterFn]=useState({fn : items => {return items}})
      const {TblContainer,TblHead,TblPagination,recordsAfterPagingAndSorting} = useTable(records,headCells,filterFn);
      const [openPopup,setOpenPopup]=useState(false)
+     const [notify,setNotify]=useState({isOpen:false,message:'',type:''})
 
      const handleSearch=e =>
      {
@@ -69,11 +70,31 @@ export default function Employees() {
         setOpenPopup(false)
         setRecordForEdit(null)
         setRecords(employeeService.getAllEmployees())
+        setNotify({
+            isOpen:true,
+            message:"Submitted Successfully",
+            type:"success"
+
+        })
      }
 
      const openInPopup = item =>{
          setRecordForEdit(item)
          setOpenPopup(true)
+     }
+
+     const onDelete = id =>{
+         if(window.confirm("Are you sure to delete this record")){
+            employeeService.deleteEmployee(id)
+            setRecords(employeeService.getAllEmployees())
+            setNotify({
+                isOpen:true,
+                message:"Deleted Successfully",
+                type:"error"
+    
+            })
+        }
+
      }
      return (
         <>
@@ -125,7 +146,9 @@ export default function Employees() {
                            </Controls.ActionButton>
                            <Controls.ActionButton
                             color="secondary"
-                            
+                            onClick={()=>{
+                                onDelete(item.id)
+                            }}
                             >
                            <CloseIcon fontsize='small'/>
                            </Controls.ActionButton>
@@ -149,7 +172,10 @@ export default function Employees() {
      recordForEdit={recordForEdit}
      />
      </Popup>
-      
+      <Notification 
+      notify={notify}
+      setNotify={setNotify}
+      />
        </>
     )
 }
