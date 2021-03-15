@@ -13,6 +13,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Popup from '../../components/Popup';
 import  Notification from '../../components/Notification';
+import ConfirmDialog from '../../components/ConfirmDialog';
 
 
 const useStyles=makeStyles(theme=>({
@@ -47,7 +48,7 @@ export default function Employees() {
      const {TblContainer,TblHead,TblPagination,recordsAfterPagingAndSorting} = useTable(records,headCells,filterFn);
      const [openPopup,setOpenPopup]=useState(false)
      const [notify,setNotify]=useState({isOpen:false,message:'',type:''})
-
+     const [confirmDialog,setConfirmDialog]=useState({isOpen:false,title:'',subTitle:''})
      const handleSearch=e =>
      {
          let target= e.target
@@ -84,7 +85,10 @@ export default function Employees() {
      }
 
      const onDelete = id =>{
-         if(window.confirm("Are you sure to delete this record")){
+            setConfirmDialog({
+                ...confirmDialog,
+                isOpen:false
+            })
             employeeService.deleteEmployee(id)
             setRecords(employeeService.getAllEmployees())
             setNotify({
@@ -93,7 +97,7 @@ export default function Employees() {
                 type:"error"
     
             })
-        }
+        
 
      }
      return (
@@ -147,7 +151,13 @@ export default function Employees() {
                            <Controls.ActionButton
                             color="secondary"
                             onClick={()=>{
-                                onDelete(item.id)
+                                // onDelete(item.id)
+                                setConfirmDialog({
+                                    isOpen:true,
+                                    title:"Are you sure to delete this record",
+                                    subTitle:"You can't undo this operation",
+                                    onConfirm: ()=>{onDelete(item.id)}
+                                })
                             }}
                             >
                            <CloseIcon fontsize='small'/>
@@ -175,6 +185,10 @@ export default function Employees() {
       <Notification 
       notify={notify}
       setNotify={setNotify}
+      />
+      <ConfirmDialog 
+      confirmDialog={confirmDialog}
+      setConfirmDialog={setConfirmDialog}
       />
        </>
     )
